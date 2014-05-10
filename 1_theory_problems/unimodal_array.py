@@ -13,7 +13,7 @@ def max_of_unimodal_array(a):
 
         :param a: unimodal array
     """
-    pass
+    return 0
 
 
 def generate_unimodal_array():
@@ -28,7 +28,7 @@ def generate_unimodal_array():
 
     left_part = set()
     for i in xrange(left_array_length):
-        left_part.add(randint(-500000, max_number))
+        left_part.add(randint(-500000, max_number - 1))
 
     left_array = sorted(list(left_part))
     final_array.extend(left_array)
@@ -36,7 +36,7 @@ def generate_unimodal_array():
 
     right_part = set()
     for i in xrange(right_array_length):
-        right_part.add(randint(-500000, max_number))
+        right_part.add(randint(-500000, max_number - 1))
 
     right_array = sorted(list(right_part))
     final_array.extend(right_array[::-1])
@@ -47,3 +47,18 @@ def generate_unimodal_array():
 
 if __name__ == '__main__':
     maximum, unimodal_array = generate_unimodal_array()
+    from util.timeit import timeit
+
+    @timeit
+    def run():
+        result = max_of_unimodal_array(unimodal_array)
+
+        if maximum == result:
+            import os
+            __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+            with open(os.path.join(__location__, 'Error.txt'), 'w') as f:
+                f.write('max: %i\nlen: %i\n' % (maximum, len(unimodal_array)))
+                for item in unimodal_array:
+                    f.write("%s\n" % item)
+
+    run()
