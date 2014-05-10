@@ -51,14 +51,14 @@ if __name__ == '__main__':
 
     @timeit
     def run():
-        result = max_of_unimodal_array(unimodal_array)
-
-        if maximum == result:
-            import os
-            __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-            with open(os.path.join(__location__, 'Error.txt'), 'w') as f:
-                f.write('max: %i\nlen: %i\n' % (maximum, len(unimodal_array)))
-                for item in unimodal_array:
-                    f.write("%s\n" % item)
+        run.result = max_of_unimodal_array(unimodal_array)
 
     run()
+
+    if run.result != maximum:
+        import os
+        __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        with open(os.path.join(__location__, 'Error.txt'), 'w') as f:
+            f.write('max: %i\nlen: %i\n' % (maximum, len(unimodal_array)))
+            for item in unimodal_array:
+                f.write("%s\n" % item)
