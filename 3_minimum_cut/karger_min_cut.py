@@ -102,7 +102,6 @@ def init():
 
 if __name__ == '__main__':
 
-
     from sys import maxsize
     m = maxsize
 
@@ -122,10 +121,13 @@ if __name__ == '__main__':
 
         """
         global m
-        for r in range(int(ceil(200*200*log(200)))):
+        r = 0
+        rmax = int(ceil(200*200*log(200)))
+        while r < rmax:
             res = min_cut(*init())
             if res < m:
                 m = res
+            r += 1
 
     try:
         run()
